@@ -1,0 +1,33 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build Space Station",
+            "type": "shell",
+            "command": "C:\\msys64\\ucrt64\\bin\\g++.exe",
+            "args": [
+                "-g",
+                "${fileDirname}\\main.cpp",
+                "-o",
+                "${fileDirname}\\SpaceStation.exe",
+                "-I", "C:\\msys64\\ucrt64\\include",
+                "-L", "C:\\msys64\\ucrt64\\lib",
+                "-lfreeglut",
+                "-lopengl32",
+                "-lglu32",
+                "-mwindows"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Compiles the 3D Space Station project."
+        }
+    ]
+}
