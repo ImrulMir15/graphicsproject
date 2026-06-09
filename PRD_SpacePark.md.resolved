@@ -1,0 +1,328 @@
+# 🚀 PRD — Space Park Fun World
+**Product Requirements Document**
+Version 1.0 | June 2026
+
+---
+
+## 1. Project Overview
+
+| Field | Details |
+|-------|---------|
+| **Project Name** | Space Park Fun World |
+| **Type** | 3D Open-World Theme Park Explorer |
+| **Language** | Python |
+| **Engine** | Ursina Engine (free, Python-native 3D engine) |
+| **Platform** | Windows (Desktop) |
+| **Target Audience** | General / All ages |
+| **Tone & Style** | Colorful, cartoony, Disney-in-space aesthetic |
+
+---
+
+## 2. Vision Statement
+
+> "A vibrant, open-world 3D space-themed amusement park where players freely explore colorful zones, play mini games for points, and experience the magic of a Disney-style park — but in outer space."
+
+This is **not** a survival game. There are **no health bars, no missions, no danger**. It is a pure exploration and fun experience.
+
+---
+
+## 3. Engine Choice — Ursina Engine
+
+**Why Ursina?**
+- 100% Python — no C++ needed
+- Free and open source
+- Built-in 3D rendering, collision, entity system
+- Smooth camera controls out of the box
+- Easy to install: `pip install ursina`
+- Supports textures, lighting, models, UI — everything needed
+- Active community and documentation
+
+---
+
+## 4. Core Features
+
+### 4.1 Open World Park
+- Large, seamlessly explorable 3D space park
+- No loading screens between areas
+- Colorful, themed environment with glowing lights, space backdrops, alien plants, decorative rockets
+- Floating platforms, space-age architecture, neon signage
+
+### 4.2 Day / Night Cycle
+- **Toggle Button**: Press **`N`** key to switch between Day and Night
+- **Day Mode**: Bright, colorful park lighting with a distant sun, vivid colors
+- **Night Mode**: Dark space sky filled with stars, neon park lights glow, atmospheric lighting
+- Smooth transition animation between modes (gradual sky color shift over ~3 seconds)
+
+### 4.3 Player Character
+- Visible **astronaut character** in a space suit
+- **Gender selection screen** at startup: Male or Female astronaut
+- Male suit: White with blue visor
+- Female suit: White with pink/purple visor
+- Animated walking, idle, and interaction poses
+
+### 4.4 Camera System
+- **Smooth follow** third-person camera by default (orbits behind player)
+- **Key `C`** → Toggle between **First Person** and **Third Person**
+- Third Person: Camera floats 3 units behind and 2 units above the player, smoothly follows
+- First Person: Camera locks to player head position, mouse look
+- No rigid/rigorous camera snapping — all transitions are smooth and interpolated
+
+### 4.5 Player Movement
+| Key | Action |
+|-----|--------|
+| `W / A / S / D` | Move forward / left / back / right |
+| `Mouse` | Look around |
+| `Space` | Jump |
+| `Shift` | Run |
+| `C` | Toggle First / Third Person camera |
+| `N` | Toggle Day / Night |
+| `E` | Interact (enter mini game, read sign) |
+| `ESC` | Pause / Main Menu |
+
+---
+
+## 5. Park Layout & Zones
+
+The park is divided into **3 main zones** with elements **mixed throughout**:
+
+```
+         ┌─────────────────────────────────────────┐
+         │           🌌 SPACE PARK FUN WORLD        │
+         │                                         │
+         │   [ENTRY PLAZA]    [OBSERVATION DECK]   │
+         │        ↓                                │
+         │   [GALAXY GAMES ZONE]   [ALIEN MARKET]  │
+         │        ↓                                │
+         │   [COSMIC RIDES ZONE]                   │
+         │        ↓                                │
+         │   [ROCKET LAUNCHPAD]                    │
+         └─────────────────────────────────────────┘
+```
+
+### Zone 1 — Entry Plaza
+- Grand welcome gate with glowing "SPACE PARK FUN WORLD" sign
+- Decorative fountain shooting glowing space liquid upward
+- Park map sign (shows zones)
+- Alien NPC characters wandering around (non-interactive, ambient)
+- Colorful flags and banners
+- Ticket booth (decorative)
+
+### Zone 2 — Galaxy Games Zone
+- Central hub for all 4 mini game stations
+- Each station has a glowing arcade-style kiosk
+- Scoreboard display near each station showing Top 5 high scores
+- Carnival-style lighting and decorations
+
+### Zone 3 — Cosmic Rides Zone
+- **Roller Coaster**: Visible track wrapping around the zone (decorative, animated cars running on track)
+- **Spinning Rocket Ride**: Rocket pods spinning around a central tower (animated, decorative)
+- **Observation Deck**: Elevated platform at the edge of the park with panoramic view of space
+- **Rocket Launchpad**: A large decorative rocket that periodically "launches" (particle effect + animation)
+
+### Mixed Throughout the Park
+- Alien NPC characters in various costumes walking paths
+- Glowing alien plant decorations
+- Food cart stands (decorative — hot dogs shaped like rockets, drinks in space helmets)
+- Floating holographic signs pointing to attractions
+- Ambient particle effects (glowing dust, floating stars)
+
+---
+
+## 6. Mini Games (4 Stations)
+
+### 🎯 Mini Game 1 — Asteroid Shooting Gallery
+- **Concept**: Asteroids float past on a conveyor path. Player aims and clicks to shoot them with a laser gun.
+- **Duration**: 60 seconds per round
+- **Scoring**:
+  - Small asteroid: 10 pts
+  - Medium asteroid: 25 pts
+  - Large asteroid: 50 pts
+  - Bonus multiplier for consecutive hits (x2 after 5 hits)
+- **Controls**: Mouse aim + Left Click to shoot
+- **Lives**: 3 misses allowed before round ends early
+- **UI**: Timer bar, score counter, hit streak indicator
+
+### 🐛 Mini Game 2 — Alien Whack-a-Mole
+- **Concept**: Cute aliens pop up randomly from glowing holes in the floor. Player clicks on them before they hide.
+- **Duration**: 45 seconds
+- **Scoring**:
+  - Green alien: 10 pts
+  - Blue alien (fast): 25 pts
+  - Gold alien (rare): 100 pts
+  - Penalty: -15 pts for clicking the "friendly" purple alien (marked with a heart)
+- **Controls**: Mouse aim + Left Click
+- **Difficulty ramp**: Speed increases every 15 seconds
+- **UI**: Timer, score, alien type legend
+
+### 🌀 Mini Game 3 — Space Maze
+- **Concept**: Navigate a 3D top-down or first-person maze to reach the exit rocket before time runs out.
+- **Duration**: 90 seconds per attempt
+- **Scoring**:
+  - Finish the maze: 500 pts base
+  - Time bonus: +10 pts per second remaining
+  - Collect floating stars inside maze: +20 pts each
+- **Controls**: `W/A/S/D` to navigate, `C` to toggle view
+- **Features**: Glowing walls, rotating star collectibles, exit marked with a green beacon
+- **Maze size**: Medium (not too large) — takes ~30-60 seconds to solve
+
+### 🚀 Mini Game 4 — Rocket Race
+- **Concept**: Pilot a small rocket through a course of floating rings in space. Pass through all rings as fast as possible.
+- **Duration**: Race against the clock, not other players
+- **Scoring**:
+  - Base: 1000 pts minus time taken in seconds × 10
+  - Bonus: +50 pts for each ring passed cleanly (center)
+  - Penalty: -100 pts for hitting a ring wall
+- **Controls**: `W/S` = thrust/brake, `A/D` = steer, mouse = look
+- **Track**: A looping course of 20 rings through asteroid fields and space scenery
+- **UI**: Speed gauge, ring counter, timer
+
+---
+
+## 7. Scoring & Leaderboard System
+
+### Local Save
+- All high scores saved to a local `scores.json` file in the game directory
+- Persists between sessions
+
+### Score Structure (per mini game)
+```json
+{
+  "asteroid_shooting": [{"name": "Player1", "score": 1250, "date": "2026-06-08"}],
+  "whack_a_mole":      [{"name": "Player1", "score": 870, "date": "2026-06-08"}],
+  "space_maze":        [{"name": "Player1", "score": 720, "date": "2026-06-08"}],
+  "rocket_race":       [{"name": "Player1", "score": 950, "date": "2026-06-08"}]
+}
+```
+
+### Post-Game Score Screen
+- Shows current score vs personal best
+- Option to enter name (up to 12 characters)
+- Top 5 leaderboard shown
+- "Play Again" and "Return to Park" buttons
+
+---
+
+## 8. UI & HUD
+
+### Main Menu (on launch)
+- "SPACE PARK FUN WORLD" title with animated stars
+- Character selection: Male / Female astronaut
+- Enter Name input
+- **Play** button
+- **Scores** button (view all leaderboards)
+- **Quit** button
+
+### In-Park HUD (minimal, non-intrusive)
+- Top-left: Current zone name
+- Top-right: Day/Night toggle button icon + `[N]` hint
+- Bottom-center: `[E] Interact` prompt (appears only near interactable objects)
+- Bottom-right: Camera mode indicator (1st / 3rd person) + `[C]` hint
+- No health bars, no survival meters — clean and friendly
+
+### Pause Menu (ESC)
+- Resume
+- View Leaderboards
+- Return to Main Menu
+- Quit Game
+
+---
+
+## 9. Visual Art Style
+
+| Element | Style |
+|---------|-------|
+| Color Palette | Vibrant purples, teals, golds, pinks — neon space carnival |
+| Architecture | Rounded, bubble-shaped buildings with glowing trim |
+| Ground | Smooth metallic/holographic floor tiles with glowing grid lines |
+| Sky (Day) | Deep blue-purple space sky with a bright star/sun |
+| Sky (Night) | Deep black with thousands of stars and nebula colors |
+| Characters | Rounded, slightly cartoonish proportions |
+| Lighting | Warm park lights + cool space ambient light |
+| Effects | Particle sparkles, glowing halos around mini game stations |
+
+---
+
+## 10. Technical Architecture
+
+```
+space_park/
+│
+├── main.py                  # Entry point, Ursina app init
+├── scores.json              # Local high score storage
+│
+├── scenes/
+│   ├── main_menu.py         # Character select + menu
+│   ├── park.py              # Open world park scene
+│   └── pause_menu.py        # Pause overlay
+│
+├── zones/
+│   ├── entry_plaza.py       # Entry zone entities
+│   ├── galaxy_games.py      # Games zone layout
+│   └── cosmic_rides.py      # Rides zone layout
+│
+├── minigames/
+│   ├── asteroid_shooting.py
+│   ├── whack_a_mole.py
+│   ├── space_maze.py
+│   └── rocket_race.py
+│
+├── player/
+│   ├── player.py            # Player entity, movement, camera
+│   └── camera_controller.py # Smooth camera logic
+│
+├── systems/
+│   ├── day_night.py         # Day/night toggle system
+│   ├── score_manager.py     # Load/save scores.json
+│   └── npc_manager.py       # Alien NPC ambient movement
+│
+└── assets/
+    ├── models/              # 3D models (.obj or Ursina built-ins)
+    ├── textures/            # Texture images
+    └── fonts/               # Custom space-style fonts
+```
+
+---
+
+## 11. Installation & Setup
+
+```bash
+# Step 1: Install Ursina
+pip install ursina
+
+# Step 2: Run the game
+python main.py
+```
+
+No additional setup required. All dependencies bundled via pip.
+
+---
+
+## 12. Development Phases
+
+| Phase | Tasks | Priority |
+|-------|-------|----------|
+| **Phase 1** | Main menu, character select, basic park world, player movement, camera toggle | 🔴 Must |
+| **Phase 2** | All 3 zones built, day/night cycle, NPCs, signage | 🔴 Must |
+| **Phase 3** | All 4 mini games with scoring | 🔴 Must |
+| **Phase 4** | Local leaderboard system, score screens | 🟡 High |
+| **Phase 5** | Decorative rides animations, particle effects, polish | 🟢 Nice |
+
+---
+
+## 13. Constraints & Decisions
+
+> [!IMPORTANT]
+> - **No background music** (per user requirement)
+> - **No survival mechanics** — no health, oxygen, reactor, or mission timers
+> - **No multiplayer** — single player only
+> - All code written in **Python** using **Ursina Engine**
+> - Camera must feel **smooth** — no snappy or rigorous movement
+> - Day/Night toggled by **`N` key**, not automatic timer
+
+---
+
+## 14. Open Questions / Future Ideas
+- Could add a **stamp collection** system (collect stamps from each attraction)
+- Could add **cosmetic unlocks** for astronaut suit colors based on score
+- Could add a **photo mode** (freeze camera, take screenshot)
+- NPCs could have simple **dialogue** on interaction in future version
