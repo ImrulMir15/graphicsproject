@@ -1,0 +1,35 @@
+# Build and temporary files
+build/
+build_mingw/
+bin/
+lib/
+out/
+dist/
+imgui.ini
+
+# Executables, libraries, and compressed releases
+*.exe
+*.dll
+*.so
+*.dylib
+*.a
+*.lib
+*.zip
+*.tar.gz
+
+# IDE settings
+.vscode/
+.idea/
+*.suo
+*.user
+*.userossc
+*.sln
+*.vcxproj
+*.filters
+
+# Compiled Python files
+__pycache__/
+*.pyc
+
+# Local tools directory
+tools/
